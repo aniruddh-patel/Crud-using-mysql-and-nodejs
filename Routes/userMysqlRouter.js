@@ -31,9 +31,8 @@ router.post("/users", async (req, res) => {
 });
 
 
-router.put("/users/:email", async (req, res) => {
-  const { email } = req.params;
-  const { name } = req.body;
+router.put("/userupdate", async (req, res) => {
+  const { email, name } = req.body;
 
   if (!name) {
     return res.status(400).json({ error: "No name" });
@@ -47,8 +46,8 @@ router.put("/users/:email", async (req, res) => {
   }
 });
 
-router.delete("/users/:email", async (req, res) => {
-  const { email } = req.params;
+router.delete("/userdelete", async (req, res) => {
+  const { email } = req.body;
 
   try {
     const [result] = await db.execute("DELETE FROM users WHERE email = ?", [email]);
